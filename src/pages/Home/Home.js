@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 export const Home = () => {
   return (
-    <div>
-      hola
+    <div className='App-container'>
+      <main></main>
     </div>
-  )
-}
+  );
+};
