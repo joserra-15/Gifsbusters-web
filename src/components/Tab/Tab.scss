@@ -1,0 +1,22 @@
+@import '../../styles/utils/utils.scss';
+
+.tab{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+  &__link{
+    text-decoration: none;
+    color: $gray;
+    text-transform: uppercase;
+
+    &-active{
+      color: $bg-primary;
+      border-top: 1px solid $bg-primary;
+    }
+  }
+
+}

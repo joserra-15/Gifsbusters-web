@@ -2,13 +2,12 @@
 // Color
 $gray: #999999;
 $dark-gray: #333333;
-$blue: #0086e4;
-
-$primary-color: $blue;
+$bg-primary:   #1b2845;
 $border-color: #dddddd;
 
+$primary-color: $bg-primary;
+
 $bg-primary-gradient: linear-gradient(315deg, #1b2845 0%, #274060 74%);
-$bg-primary:   #1b2845;
 
 
 
@@ -25,3 +24,30 @@ $input-height: 40px;
 
 // Button
 $button-height: $input-height;
+
+
+.flex-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-align-center {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.w-full{
+  width: 100%;
+}
+
+.p-10{
+  padding: 10px;
+}
+
+.m-10{
+  margin: 10px;
+}
+
+.m-20{
+  margin: 20px;
+}

@@ -1,8 +1,8 @@
-/* import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { AuthTypes } from './auth-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
-import { normalizeUsers } from '../../utils/normalizrSchema/schema';
+import { normalizeUsers } from '../../utils/normlizr';
 import { loadUsers } from '../user/user-actions';
 
 export const resetStoreAndLogOut = () => ({
@@ -13,7 +13,7 @@ export const signUpRequest = () => ({
   type: AuthTypes.SIGN_UP_REQUEST,
 });
 
-export const signUpError = (message) => ({
+export const signUpError = message => ({
   type: AuthTypes.SIGN_UP_ERROR,
   payload: message,
 });
@@ -34,15 +34,7 @@ export function signUpWithEmailRequest(email, password, recaptchaToken) {
     dispatch(signUpRequest());
 
     try {
-      const { error, data: response } = await api.verifyRecaptchaToken(
-        recaptchaToken,
-      );
-
-      if (response.data) {
-        await auth.singUpWithEmailAndPassword(email, password);
-      } else {
-        dispatch(signUpError(error));
-      }
+      await auth.singUpWithEmailAndPassword(email, password);
     } catch (error) {
       dispatch(signUpError(error.message));
     }
@@ -54,15 +46,7 @@ export function signInWithEmailRequest(email, password, recaptchaToken) {
     dispatch(signUpRequest());
 
     try {
-      const { error, data: response } = await api.verifyRecaptchaToken(
-        recaptchaToken,
-      );
-
-      if (response.data) {
-        await auth.singInWithEmailAndPassword(email, password);
-      } else {
-        dispatch(signUpError(error));
-      }
+      await auth.singInWithEmailAndPassword(email, password);
     } catch (error) {
       dispatch(signUpError(error.message));
     }
@@ -78,12 +62,12 @@ export function syncSignIn() {
     }
 
     try {
-      const { errorMessage, data: response } = await api.signUp({
+      const { data: response } = await api.signUp({
         Authorization: `Bearer ${token}`,
       });
 
-      if (errorMessage || response.error) {
-        return dispatch(signUpError(errorMessage || response.error));
+      if (response.error) {
+        return dispatch(signUpError(response.error));
       }
       const { entities, result } = normalizeUsers([response.data]);
       dispatch(loadUsers(entities.users));
@@ -94,7 +78,7 @@ export function syncSignIn() {
   };
 }
 
-export const signUpSuccess = (user) => ({
+export const signUpSuccess = user => ({
   type: AuthTypes.SIGN_UP_SUCCESS,
   payload: user,
 });
@@ -127,7 +111,7 @@ export function signOut() {
   };
 }
 
-export const signOutError = (message) => ({
+export const signOutError = message => ({
   type: AuthTypes.SIGN_OUT_ERROR,
   payload: message,
 });
@@ -151,7 +135,7 @@ export function sendPasswordResetEmail(email, recaptchaToken) {
         if (firebaseRespone.error) {
           dispatch(sendPasswordResetEmailError(firebaseRespone.error.message));
         } else {
-          toast.success('👌 Email sent!');
+          //toast.success('👌 Email sent!');
           dispatch(sendPasswordResetEmailSuccess());
         }
       } else {
@@ -167,7 +151,7 @@ export const sendPasswordResetEmailRequest = () => ({
   type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST,
 });
 
-export const sendPasswordResetEmailError = (errorMessage) => ({
+export const sendPasswordResetEmailError = errorMessage => ({
   type: AuthTypes.SEND_PASSWORD_RESET_EMAIL_ERROR,
   payload: errorMessage,
 });
@@ -179,5 +163,3 @@ export const sendPasswordResetEmailSuccess = () => ({
 export const resetAuthState = () => ({
   type: AuthTypes.RESET_AUTH_STATE,
 });
-
- */

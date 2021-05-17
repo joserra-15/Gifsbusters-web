@@ -1,26 +1,59 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Tab from '../../components/Tab';
+import ROUTES from '../../routes';
+import { FcGoogle } from 'react-icons/fc';
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import {
+  signInWithEmailRequest,
+  signUpWithGoogleRequest,
+} from '../../redux/auth/auth-actions';
+import { validationSchema } from '../../utils/validationSchema';
 
 export const Login = () => {
+  const dispatch = useDispatch();
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: validationSchema.login,
+    onSubmit: values => {
+      dispatch(signInWithEmailRequest(values.email, values.password));
+    },
+  });
+
+  function handleLoginWithGoogle(e) {
+    e.preventDefault();
+    dispatch(signUpWithGoogleRequest());
+  }
+
   return (
     <div className='App-container-login'>
       <div className='form-container'>
         <Tab />
-        <form className='form'>
+        <form className='form' onSubmit={formik.handleSubmit}>
           <div className='input-group'>
             <input
               className='input-group__input'
               type='text'
               placeholder='&nbsp;'
-              name='username'
-              id='username'
+              name='email'
+              id='email'
               autoComplete='off'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
               required
             />
-            <label className='input-group__label' htmlFor='username'>
-              Username
+            <label className='input-group__label' htmlFor='email'>
+              Email
             </label>
           </div>
+          {formik.touched.email && formik.errors.email && (
+            <div className='m-10'>{formik.errors.email}</div>
+          )}
           <div className='input-group'>
             <input
               className='input-group__input'
@@ -28,20 +61,32 @@ export const Login = () => {
               name='password'
               placeholder='&nbsp;'
               id='password'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
               required
             />
             <label className='input-group__label' htmlFor='password'>
               Password
             </label>
           </div>
-          <div className='flex-space-between'>
-            {/*   <p>
-            <a href='#'>Forgot Password?</a>
-          </p> */}
+          {formik.touched.password && formik.errors.password && (
+            <div className='m-10'>{formik.errors.password}</div>
+          )}
+          <div className='flex-space-between m-10'>
+            <Link to={ROUTES.RESET_PASSWORD}>Forgot Password?</Link>
           </div>
-          <button type='submit'>Submit</button>
+          <button type='submit' className='button-form w-full'>
+            Submit
+          </button>
         </form>
       </div>
+      <button
+        type='button'
+        className='button-form m-20'
+        onClick={handleLoginWithGoogle}>
+        <FcGoogle /> | Login With Google
+      </button>
     </div>
   );
 };

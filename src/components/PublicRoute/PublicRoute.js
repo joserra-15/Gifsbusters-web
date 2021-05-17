@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 
 import ROUTES from '../../routes';
 
-export const ProtectedRoute = ({ isAuthenticated, children, ...props }) => {
-  return isAuthenticated ? (
+export const PublicRoute = ({ isAuthenticated, children, ...props }) => {
+  return !isAuthenticated ? (
     <Route {...props}>{children}</Route>
   ) : (
     <Redirect to={ROUTES.HOME} />
   );
 };
 
-ProtectedRoute.propTypes = {
+PublicRoute.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
   children: PropTypes.element.isRequired,
 };

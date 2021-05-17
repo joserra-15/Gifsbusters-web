@@ -62,6 +62,42 @@ export const AuthReducer = (state = AuthInitialState, action) => {
         },
       };
     }
+    case AuthTypes.SEND_PASSWORD_RESET_EMAIL_REQUEST: {
+      return {
+        ...state,
+        isSendingPasswordReset: true,
+        passwordResetError: null,
+        passwordResetSent: false,
+      };
+    }
+    case AuthTypes.SEND_PASSWORD_RESET_EMAIL_ERROR: {
+      return {
+        ...state,
+        isSendingPasswordReset: false,
+        passwordResetError: action.payload,
+        passwordResetSent: false,
+      };
+    }
+    case AuthTypes.SEND_PASSWORD_RESET_EMAIL_SUCCESS: {
+      return {
+        ...state,
+        isSendingPasswordReset: false,
+        passwordResetError: null,
+        passwordResetSent: true,
+      };
+    }
+    case AuthTypes.RESET_AUTH_STATE: {
+      return {
+        ...state,
+        isSigningUp: false,
+        signUpErrorMsg: null,
+        isSigningOut: false,
+        signOutError: null,
+        isSendingPasswordReset: false,
+        passwordResetError: null,
+        passwordResetSent: false,
+      };
+    }
 
     default: {
       return state;
