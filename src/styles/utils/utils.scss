@@ -3,6 +3,7 @@
 $gray: #999999;
 $dark-gray: #333333;
 $bg-primary:   #1b2845;
+$bg-secundary:   #274060;
 $border-color: #dddddd;
 
 $primary-color: $bg-primary;
@@ -21,6 +22,7 @@ $body-color: $dark-gray;
 
 // Input
 $input-height: 40px;
+$icon-size: 35px;
 
 // Button
 $button-height: $input-height;
@@ -31,23 +33,39 @@ $button-height: $input-height;
   justify-content: space-between;
 }
 
-.flex-align-center {
+.flex-justify-center {
   display: flex;
   justify-content: center;
   gap: 5px;
 }
+
+.flex{display: flex;}
+
+.flex-align-center {
+  align-items: center;
+}
+
 .w-full{
   width: 100%;
 }
 
+.p-0{
+  padding: 0;
+}
 .p-10{
   padding: 10px;
 }
-
+.px-10{
+  padding: 0 10px;
+}
 .m-10{
   margin: 10px;
 }
 
 .m-20{
   margin: 20px;
+}
+
+.text-center{
+  text-align: center;
 }

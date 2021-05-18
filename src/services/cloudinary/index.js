@@ -1,0 +1,1 @@
+export { mediaUpload } from './cloudinary';

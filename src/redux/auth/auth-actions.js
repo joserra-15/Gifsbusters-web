@@ -29,7 +29,7 @@ export function signUpWithGoogleRequest() {
   };
 }
 
-export function signUpWithEmailRequest(email, password, recaptchaToken) {
+export function signUpWithEmailRequest(email, password) {
   return async function signUpThunk(dispatch) {
     dispatch(signUpRequest());
 
@@ -41,7 +41,7 @@ export function signUpWithEmailRequest(email, password, recaptchaToken) {
   };
 }
 
-export function signInWithEmailRequest(email, password, recaptchaToken) {
+export function signInWithEmailRequest(email, password) {
   return async function signUpThunk(dispatch) {
     dispatch(signUpRequest());
 
@@ -120,26 +120,18 @@ export const signOutSuccess = () => ({
   type: AuthTypes.SIGN_OUT_SUCCESS,
 });
 
-export function sendPasswordResetEmail(email, recaptchaToken) {
+export function sendPasswordResetEmail(email) {
   return async function sendPasswordResetEmailRequestThunk(dispatch) {
     dispatch(sendPasswordResetEmailRequest());
 
     try {
-      const { error, data: response } = await api.verifyRecaptchaToken(
-        recaptchaToken,
-      );
+      const firebaseResponse = await auth.sendPasswordResetEmail(email);
 
-      if (response.data) {
-        const firebaseRespone = await auth.sendPasswordResetEmail(email);
-
-        if (firebaseRespone.error) {
-          dispatch(sendPasswordResetEmailError(firebaseRespone.error.message));
-        } else {
-          //toast.success('👌 Email sent!');
-          dispatch(sendPasswordResetEmailSuccess());
-        }
+      if (firebaseResponse?.error) {
+        dispatch(sendPasswordResetEmailError(firebaseResponse.error.message));
       } else {
-        dispatch(sendPasswordResetEmailError(error));
+        //toast.success('👌 Email sent!');
+        dispatch(sendPasswordResetEmailSuccess());
       }
     } catch (error) {
       dispatch(sendPasswordResetEmailError(error.message));

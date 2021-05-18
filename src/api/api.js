@@ -14,4 +14,14 @@ export const api = {
       headers: headers,
     });
   },
+
+  uploadMedia: (headers, body = {}) => {
+    return axios.post(`${baseURL}/media/upload`, body, {
+      headers: headers,
+    });
+  },
+
+  getMedia: () => {
+    return axios.get(`${baseURL}/media`);
+  },
 };

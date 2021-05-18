@@ -1,0 +1,77 @@
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useFormik } from 'formik';
+import { HiOutlineUpload } from 'react-icons/hi';
+import { validationSchema } from '../../utils/validationSchema';
+import Dropzone from '../../components/Dropzone';
+import MediaForm from '../../components/MediaForm';
+
+import './Upload.scss';
+import { uploadMedia } from '../../redux/upload/upload-actions';
+
+export const Upload = () => {
+  const dispatch = useDispatch();
+  const [loadFile, setIsLoadFile] = useState(null);
+  const formik = useFormik({
+    initialValues: { url: '' },
+    validationSchema: validationSchema.upload,
+    onSubmit: values => {
+      setIsLoadFile(values.url);
+    },
+  });
+
+  const handleUploadFiles = file => {
+    setIsLoadFile(file);
+  };
+
+  const handleCancel = () => {
+    setIsLoadFile(null);
+  };
+  const handleSubmit = ({ type, title }) => {
+    dispatch(uploadMedia({ file: loadFile, type, title }));
+  };
+
+  return (
+    <div className='upload'>
+      {loadFile ? (
+        <MediaForm handleCancel={handleCancel} handleSubmit={handleSubmit} />
+      ) : (
+        <>
+          <section>
+            <h3>Upload files</h3>
+            <Dropzone
+              onFileSelected={files => {
+                handleUploadFiles(files[0]);
+              }}
+            />
+          </section>
+          <section>
+            <h3>Any URL:</h3>
+            <form
+              className='w-full flex flex-align-center'
+              onSubmit={formik.handleSubmit}>
+              <input
+                type='text'
+                className='input-group__input'
+                name='url'
+                id='url'
+                placeholder='Enter any media or GIF URL'
+                aria-label='url'
+                onChange={formik.handleChange}
+                value={formik.values.url}
+              />
+              <button
+                type='submit'
+                className='button-form button-min-width button-icon p-0'>
+                <HiOutlineUpload />
+              </button>
+            </form>
+            {formik.touched.url && formik.errors.url && (
+              <div className='m-10'>{formik.errors.url}</div>
+            )}
+          </section>
+        </>
+      )}
+    </div>
+  );
+};

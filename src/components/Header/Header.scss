@@ -9,9 +9,8 @@
   align-items: center;
   justify-content: space-between;
 
-
-  .logo{
-    color: white;
-    font-size: 35px;
+  .img{
+    width: $icon-size;
+    height: $icon-size;
   }
 }

@@ -1,23 +1,36 @@
 
-.button-form {
-  cursor: pointer;
-  background-color: $primary-color;
-  color: white;
-  border: none;
-  font-weight: bold;
-  text-transform: uppercase;
-  border-radius: 4px;
-  letter-spacing: 1px;
-  height: $button-height;
-  transition: 300ms background-color ease-in-out;
-  &:hover {
+.button {
+  &-form{
+    cursor: pointer;
+    background-color: $primary-color;
+    color: white;
+    border: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    height: $button-height;
+    transition: 300ms background-color ease-in-out;
+    &:hover {
       background-color: lighten($primary-color, 10%);
+    }
+  }
+
+  &-min-width{
+    min-width: 40px;
+  }
+
+  &-bg-none{
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+
+  &-icon{
+    color: white;
+    font-size: $icon-size;
+    text-align: center;
   }
 }
 
-.button-bg-none{
-  border: none;
-  background: none;
-  cursor: pointer;
-}
 

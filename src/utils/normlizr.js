@@ -11,3 +11,15 @@ const user = new schema.Entity(
 export function normalizeUsers(users) {
   return normalize(users, [user]);
 }
+
+const media = new schema.Entity(
+  'media',
+  {},
+  {
+    idAttribute: '_id',
+  },
+);
+
+export function normalizeMedia(medias) {
+  return normalize(medias, [media]);
+}
