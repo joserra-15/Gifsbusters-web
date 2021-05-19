@@ -66,6 +66,24 @@ $button-height: $input-height;
   margin: 20px;
 }
 
+.mt-10{
+  margin-top: 10px;
+}
+
+.mt-60{
+  margin-top: 60px;
+}
+
+.mt-120{
+  margin-top: 120px;
+}
+
 .text-center{
   text-align: center;
+}
+
+.img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

@@ -17,7 +17,7 @@ export const ResetPassword = () => {
     },
   });
   return (
-    <div className='App-container-login'>
+    <div className='App-container-login container'>
       <div className='form-container'>
         <Tab />
         <form className='form' onSubmit={formik.handleSubmit}>

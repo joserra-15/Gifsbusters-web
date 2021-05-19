@@ -10,9 +10,12 @@
     border-radius: 4px;
     letter-spacing: 1px;
     height: $button-height;
-    transition: 300ms background-color ease-in-out;
+    transition: 300ms scale ease-in-out;
+    &:active {
+      transform: scale(1.1);
+    }
     &:hover {
-      background-color: lighten($primary-color, 10%);
+      background-color: darken($primary-color, 3%)
     }
   }
 

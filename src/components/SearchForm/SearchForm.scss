@@ -1,0 +1,11 @@
+.search-form{
+  position: fixed;
+  top: 65px;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+
+  div{
+    display: flex;
+  }
+}

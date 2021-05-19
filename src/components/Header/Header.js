@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import ROUTES from '../../routes';
 import { RiGhostSmileLine } from 'react-icons/ri';
-import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineLogout } from 'react-icons/ai';
 import { HiOutlineUpload } from 'react-icons/hi';
 
 import './Header.scss';
@@ -27,26 +27,38 @@ export const Header = () => {
       </NavLink>
 
       <div className='flex-align-center'>
+        <NavLink to={ROUTES.GIF} className='header__link'>
+          GIF
+        </NavLink>
+        <NavLink to={ROUTES.MEME} className='header__link'>
+          MEME
+        </NavLink>
+      </div>
+      <div className='flex-align-center'>
         {isAuthenticated && (
           <NavLink to={ROUTES.UPLOAD} className='button-icon'>
             <HiOutlineUpload />
           </NavLink>
         )}
         {isAuthenticated ? (
-          <button
-            type='button'
-            className='button-bg-none button-icon'
-            onClick={handleSignOut}>
-            <img src={image} alt='user-profile' className='img' />
-          </button>
+          <>
+            <NavLink
+              to={`${ROUTES.USER_WHITHOUT_PARAM}${currentUser}`}
+              className='button-bg-none button-icon'>
+              <img src={image} alt='user-profile' className='img' />
+            </NavLink>
+            <button
+              type='button'
+              className='button-bg-none button-icon'
+              onClick={handleSignOut}>
+              <AiOutlineLogout />
+            </button>
+          </>
         ) : (
           <NavLink to={ROUTES.LOGIN} className='button-icon'>
             <AiOutlineUser />
           </NavLink>
         )}
-        <button type='button' className='button-bg-none button-icon'>
-          <AiOutlineMenu />
-        </button>
       </div>
     </header>
   );

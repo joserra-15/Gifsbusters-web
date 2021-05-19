@@ -15,13 +15,35 @@ export const api = {
     });
   },
 
+  getUserById: userId => {
+    return axios.get(`${baseURL}/user/${userId}`);
+  },
+
+  editUser: (headers, body = {}) => {
+    return axios.patch(`${baseURL}/user/`, body, {
+      headers: headers,
+    });
+  },
+
   uploadMedia: (headers, body = {}) => {
     return axios.post(`${baseURL}/media/upload`, body, {
       headers: headers,
     });
   },
 
+  getMediaById: mediaId => {
+    return axios.get(`${baseURL}/media/${mediaId}`);
+  },
+
   getMedia: () => {
     return axios.get(`${baseURL}/media`);
+  },
+
+  getMemes: () => {
+    return axios.get(`${baseURL}/media/memes`);
+  },
+
+  getGifs: () => {
+    return axios.get(`${baseURL}/media/gifs`);
   },
 };

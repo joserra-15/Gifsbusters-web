@@ -1,4 +1,4 @@
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { AuthTypes } from './auth-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
@@ -130,7 +130,7 @@ export function sendPasswordResetEmail(email) {
       if (firebaseResponse?.error) {
         dispatch(sendPasswordResetEmailError(firebaseResponse.error.message));
       } else {
-        //toast.success('👌 Email sent!');
+        toast.success('👌 Email sent!');
         dispatch(sendPasswordResetEmailSuccess());
       }
     } catch (error) {

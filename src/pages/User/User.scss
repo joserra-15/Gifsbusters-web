@@ -1,0 +1,11 @@
+.user-view{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  &__img{
+    width: 200px;
+    height: 200px;
+  }
+}

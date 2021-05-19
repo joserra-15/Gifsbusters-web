@@ -6,4 +6,10 @@ export const ROUTES = {
   UPLOAD: '/upload',
   SEARCH: '/search/:searchValue',
   SEARCH_WHITHOUT_PARAM: '/search/',
+  MEDIA: '/media/:mediaId',
+  MEDIA_WHITHOUT_PARAM: '/media/',
+  USER: '/user/:userId',
+  USER_WHITHOUT_PARAM: '/user/',
+  GIF: '/gif',
+  MEME: '/meme',
 };

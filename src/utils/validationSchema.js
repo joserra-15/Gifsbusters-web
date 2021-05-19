@@ -22,4 +22,11 @@ export const validationSchema = {
       .required('Please enter title'),
     type: Yup.string().required('A radio option is required'),
   }),
+  user: Yup.object({
+    userName: Yup.string()
+      .min(3, 'Must be 3 characters or more')
+      .max(30, 'Must be 3 characters or less')
+      .required('Please enter username'),
+    image: Yup.string().required('A radio option is required'),
+  }),
 };

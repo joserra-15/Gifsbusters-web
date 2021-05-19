@@ -1,0 +1,26 @@
+.user-form{
+  background-color: white;
+  padding: 20px;
+
+  &__radio{
+    display: none;
+  }
+
+  &__img-preview{
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+  }
+
+  &__img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  &__img-border{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border: 1px solid black;
+  }
+}

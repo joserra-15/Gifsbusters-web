@@ -32,8 +32,8 @@ body{
   margin: 0 auto;
   display: grid;
   grid-template-areas:
-  "a"
-  "b";
+  "header"
+  "container";
   grid-template-rows: 60px 1fr;
   background-color: darken($bg-secundary, 1.5);
 
@@ -48,6 +48,9 @@ body{
   }
 }
 
+.container{
+  grid-area: container;
+}
 
 
 .input-group {
@@ -101,5 +104,6 @@ body{
   &-container{
     background-color: white;
     padding: 20px;
+    border-radius: 4px;
   }
 }

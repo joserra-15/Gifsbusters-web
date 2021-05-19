@@ -1,0 +1,5 @@
+export const GifTypes = {
+  GET_GIF_REQUEST: 'GET_GIF_REQUEST',
+  GET_GIF_SUCCESS: 'GET_GIF_SUCCESS',
+  GET_GIF_ERROR: 'GET_GIF_ERROR',
+};

@@ -32,46 +32,48 @@ export const Upload = () => {
   };
 
   return (
-    <div className='upload'>
-      {loadFile ? (
-        <MediaForm handleCancel={handleCancel} handleSubmit={handleSubmit} />
-      ) : (
-        <>
-          <section>
-            <h3>Upload files</h3>
-            <Dropzone
-              onFileSelected={files => {
-                handleUploadFiles(files[0]);
-              }}
-            />
-          </section>
-          <section>
-            <h3>Any URL:</h3>
-            <form
-              className='w-full flex flex-align-center'
-              onSubmit={formik.handleSubmit}>
-              <input
-                type='text'
-                className='input-group__input'
-                name='url'
-                id='url'
-                placeholder='Enter any media or GIF URL'
-                aria-label='url'
-                onChange={formik.handleChange}
-                value={formik.values.url}
+    <div className='container'>
+      <div className='upload'>
+        {loadFile ? (
+          <MediaForm handleCancel={handleCancel} handleSubmit={handleSubmit} />
+        ) : (
+          <>
+            <section>
+              <h3>Upload files</h3>
+              <Dropzone
+                onFileSelected={files => {
+                  handleUploadFiles(files[0]);
+                }}
               />
-              <button
-                type='submit'
-                className='button-form button-min-width button-icon p-0'>
-                <HiOutlineUpload />
-              </button>
-            </form>
-            {formik.touched.url && formik.errors.url && (
-              <div className='m-10'>{formik.errors.url}</div>
-            )}
-          </section>
-        </>
-      )}
+            </section>
+            <section>
+              <h3>Any URL:</h3>
+              <form
+                className='w-full flex flex-align-center'
+                onSubmit={formik.handleSubmit}>
+                <input
+                  type='text'
+                  className='input-group__input'
+                  name='url'
+                  id='url'
+                  placeholder='Enter any media or GIF URL'
+                  aria-label='url'
+                  onChange={formik.handleChange}
+                  value={formik.values.url}
+                />
+                <button
+                  type='submit'
+                  className='button-form button-min-width button-icon p-0'>
+                  <HiOutlineUpload />
+                </button>
+              </form>
+              {formik.touched.url && formik.errors.url && (
+                <div className='m-10'>{formik.errors.url}</div>
+              )}
+            </section>
+          </>
+        )}
+      </div>
     </div>
   );
 };

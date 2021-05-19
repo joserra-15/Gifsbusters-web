@@ -1,45 +1,24 @@
-import { useFormik } from 'formik';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import { AiOutlineSearch } from 'react-icons/ai';
-import { useDispatch } from 'react-redux';
-import { ROUTES } from '../../routes/routes';
-import { getMedia } from '../../redux/Home/home-actions';
-
-// import './Home.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import MediaList from '../../components/MediaList';
+import SearchForm from '../../components/SearchForm';
+import { getMedia } from '../../redux/home/home-actions';
+import { homeSelector } from '../../redux/home/home-selectors';
 
 export const Home = () => {
-  const history = useHistory();
-  const formik = useFormik({
-    initialValues: { search: '' },
-    onSubmit: values => {
-      history.push(`${ROUTES.SEARCH_WHITHOUT_PARAM}${values.search}`);
-    },
-  });
   const dispatch = useDispatch();
+  const { isGettingMedia, media } = useSelector(homeSelector) || {};
 
   useEffect(() => {
     dispatch(getMedia());
   }, [dispatch]);
 
   return (
-    <div className='App-container' onSubmit={formik.handleSubmit}>
-      <form className='w-full flex flex-align-center search-form px-10'>
-        <input
-          type='text'
-          className='input-group__input'
-          name='search'
-          id='search'
-          placeholder='Search...'
-          aria-label='search'
-          onChange={formik.handleChange}
-          value={formik.values.search}
-        />
-        <button className='button-form button-min-width button-icon'>
-          <AiOutlineSearch />
-        </button>
-      </form>
-      <main></main>
+    <div className='container'>
+      <SearchForm />
+      <main className='mt-60'>
+        <MediaList loading={isGettingMedia} media={media} />
+      </main>
     </div>
   );
 };
