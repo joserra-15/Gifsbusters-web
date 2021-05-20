@@ -4,9 +4,11 @@ import { useFormik } from 'formik';
 import { validationSchema } from '../../utils/validationSchema';
 import { useDispatch } from 'react-redux';
 import { sendPasswordResetEmail } from '../../redux/auth/auth-actions';
+import { useTranslation } from 'react-i18next';
 
 export const ResetPassword = () => {
   const dispatch = useDispatch();
+  const [t] = useTranslation('global');
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -42,7 +44,7 @@ export const ResetPassword = () => {
             <div className='m-10'>{formik.errors.email}</div>
           )}
           <button type='submit' className='button-form w-full'>
-            Submit
+            {t('login.submit')}
           </button>
         </form>
       </div>

@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import './ConfirmText.scss';
 
 export const ConfirmText = ({ handleRemove, onCancel, title }) => {
+  const [t] = useTranslation('global');
+
   return (
     <div className='confirm-text'>
       <h3 className='text-center'>
-        Are you sure you want to remove <br />
+        {t('confirmText.are-you-sure-you-want-to-remove')} <br />
         <span>{title}</span>?
       </h3>
       <div className='flex-space-around'>
         <button className='button-form' type='button' onClick={handleRemove}>
-          Yes
+          {t('confirmText.yes')}
         </button>
         <button className='button-form' type='button' onClick={onCancel}>
-          No
+          {t('confirmText.no')}
         </button>
       </div>
     </div>

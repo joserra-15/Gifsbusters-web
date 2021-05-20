@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { validationSchema } from '../../utils/validationSchema';
 import { Spinner } from '../Spinner/Spinner';
+import { useTranslation } from 'react-i18next';
 
 import './MediaForm.scss';
 
@@ -13,6 +14,7 @@ export const MediaForm = ({
   handleSubmit,
   loading,
 }) => {
+  const [t] = useTranslation('global');
   const formik = useFormik({
     initialValues: { title: defaultTitle, type: defaultType },
     validationSchema: validationSchema.mediaForm,
@@ -36,7 +38,7 @@ export const MediaForm = ({
           required
         />
         <label className='input-group__label' htmlFor='title'>
-          Title
+          {t('mediaForm.title')}
         </label>
       </div>
       {formik.touched.title && formik.errors.title && (
@@ -74,10 +76,10 @@ export const MediaForm = ({
 
       <div className='flex-space-around w-full'>
         <button type='button' className='button-form' onClick={handleCancel}>
-          cancel
+          {t('mediaForm.cancel')}
         </button>
         <button type='submit' className='button-form'>
-          submit
+          {t('mediaForm.submit')}
         </button>
       </div>
     </form>

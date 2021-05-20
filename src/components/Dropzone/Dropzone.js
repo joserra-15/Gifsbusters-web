@@ -1,7 +1,7 @@
 import React from 'react';
 import { func } from 'prop-types';
 import { useDropzone } from 'react-dropzone';
-
+import { useTranslation } from 'react-i18next';
 import './Dropzone.scss';
 
 export const Dropzone = ({ onFileSelected }) => {
@@ -11,6 +11,7 @@ export const Dropzone = ({ onFileSelected }) => {
     maxSize: 5242880,
     onDropAccepted: onFileSelected,
   });
+  const [t] = useTranslation('global');
 
   return (
     <div className='flex-justify-center'>
@@ -20,7 +21,7 @@ export const Dropzone = ({ onFileSelected }) => {
           className='dropzone_container'>
           <input {...getInputProps()} id='dropzoneInput' />
           <p className='text-center'>
-            Drag n drop some files here, or click to select files
+            {t('upload.drag-n-drop-some-files-here-or-click-to-select-files')}
           </p>
         </div>
       </section>

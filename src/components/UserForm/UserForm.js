@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { validationSchema } from '../../utils/validationSchema';
-
-import './UserForm.scss';
 import { imagesPreview } from '../../utils/utils';
 import { useDispatch } from 'react-redux';
 import { editUser } from '../../redux/userView/userView-actions';
+import { useTranslation } from 'react-i18next';
+
+import './UserForm.scss';
 
 export const UserForm = ({ defaultUserName, defaultImg }) => {
   const dispatch = useDispatch();
+  const [t] = useTranslation('global');
   const formik = useFormik({
     initialValues: {
       userName: defaultUserName,
@@ -80,7 +82,7 @@ export const UserForm = ({ defaultUserName, defaultImg }) => {
           <div className='m-10'>{formik.errors.userName}</div>
         )}
         <button type='submit' className='button-form w-full'>
-          Submit
+          {t('user.submit')}
         </button>
       </form>
     </>

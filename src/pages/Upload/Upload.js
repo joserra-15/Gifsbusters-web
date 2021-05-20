@@ -5,13 +5,15 @@ import { HiOutlineUpload } from 'react-icons/hi';
 import { validationSchema } from '../../utils/validationSchema';
 import Dropzone from '../../components/Dropzone';
 import MediaForm from '../../components/MediaForm';
-
-import './Upload.scss';
 import { uploadMedia, uploadReset } from '../../redux/upload/upload-actions';
 import { uploadSelector } from '../../redux/upload/upload-selectors';
+import { useTranslation } from 'react-i18next';
+
+import './Upload.scss';
 
 export const Upload = () => {
   const dispatch = useDispatch();
+  const [t] = useTranslation('global');
   const { isUploading, uploadSucces } = useSelector(uploadSelector);
   const [loadFile, setIsLoadFile] = useState(null);
   const formik = useFormik({
@@ -60,7 +62,7 @@ export const Upload = () => {
         ) : (
           <>
             <section>
-              <h3>Upload files</h3>
+              <h3>{t('upload.upload-files')}</h3>
               <Dropzone
                 onFileSelected={files => {
                   handleUploadFiles(files[0]);
@@ -68,7 +70,7 @@ export const Upload = () => {
               />
             </section>
             <section>
-              <h3>Any URL:</h3>
+              <h3>{t('upload.any-url')}</h3>
               <form
                 className='w-full flex flex-align-center'
                 onSubmit={formik.handleSubmit}>
@@ -78,7 +80,7 @@ export const Upload = () => {
                   name='url'
                   id='url'
                   autoComplete='off'
-                  placeholder='Enter any media or GIF URL'
+                  placeholder={t('upload.enter-any-media-or-GIF-URL')}
                   aria-label='url'
                   onChange={formik.handleChange}
                   value={formik.values.url}

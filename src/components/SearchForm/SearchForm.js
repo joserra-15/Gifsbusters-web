@@ -12,11 +12,13 @@ import {
   filterChangeUser,
 } from '../../redux/search/search-actions';
 import { validationSchema } from '../../utils/validationSchema';
+import { useTranslation } from 'react-i18next';
 
 import './SearchForm.scss';
 
 export const SearchForm = () => {
   const history = useHistory();
+  const [t] = useTranslation('global');
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { search: '', filter: [] },
@@ -100,7 +102,7 @@ export const SearchForm = () => {
             value={SearchTypes.SEARCH_FILTER_USER_CHANGE}
           />
           <label htmlFor='filterUser' className='label-search'>
-            Users
+            {t('home.users')}
           </label>
         </div>
       </div>

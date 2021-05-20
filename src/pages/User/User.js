@@ -12,11 +12,13 @@ import {
   getUserById,
 } from '../../redux/userView/userView-actions';
 import { userViewSelector } from '../../redux/userView/userView-selectors';
+import { useTranslation } from 'react-i18next';
 
 import './User.scss';
 
 export const User = () => {
   const { userId } = useParams();
+  const [t] = useTranslation('global');
   const { currentUser } = useSelector(authSelector);
   const { isGettingUserView, isGettingUserMediaView, media } =
     useSelector(userViewSelector) || {};
@@ -48,7 +50,7 @@ export const User = () => {
           </div>
           {currentUser === userId && (
             <button type='button' className='button-form' onClick={handleEdit}>
-              Edit
+              {t('user.edit')}
             </button>
           )}
           <ModalLayout isOpen={isEdit} handleClose={handleEdit}>
@@ -57,7 +59,9 @@ export const User = () => {
         </div>
       )}
       <section>
-        <h3 className='text-white px-10'>All of {userName}</h3>
+        <h3 className='text-white px-10'>
+          {t('user.all-of')} {userName}
+        </h3>
         <MediaList loading={isGettingUserMediaView} media={media} />
       </section>
     </div>

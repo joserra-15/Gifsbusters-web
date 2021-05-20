@@ -8,9 +8,11 @@ import {
   signUpWithGoogleRequest,
 } from '../../redux/auth/auth-actions';
 import { validationSchema } from '../../utils/validationSchema';
+import { useTranslation } from 'react-i18next';
 
 export const Register = () => {
   const dispatch = useDispatch();
+  const [t] = useTranslation('global');
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -65,14 +67,14 @@ export const Register = () => {
               required
             />
             <label className='input-group__label' htmlFor='password'>
-              Password
+              {t('login.password')}
             </label>
           </div>
           {formik.touched.password && formik.errors.password && (
             <div className='m-10'>{formik.errors.password}</div>
           )}
           <button type='submit' className='button-form w-full'>
-            Submit
+            {t('login.submit')}
           </button>
         </form>
       </div>
@@ -80,7 +82,7 @@ export const Register = () => {
         type='button'
         className='button-form m-20'
         onClick={handleLoginWithGoogle}>
-        <FcGoogle /> | Login With Google
+        <FcGoogle /> | {t('login.login-with-google')}
       </button>
     </div>
   );

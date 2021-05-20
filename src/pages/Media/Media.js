@@ -12,18 +12,20 @@ import {
 import { mediaViewSelector } from '../../redux/mediaView/mediaView-selectors';
 import { selectMediaByIdState } from '../../redux/media/media-selectors';
 import { toast } from 'react-toastify';
-
-import './Media.scss';
 import { selectUserByIdState } from '../../redux/user/user-selectors';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../routes';
 import { ModalLayout } from '../../components/ModalLayout/ModalLayout';
 import { MediaForm } from '../../components/MediaForm/MediaForm';
 import ConfirmText from '../../components/ConfirmText';
+import { useTranslation } from 'react-i18next';
+
+import './Media.scss';
 
 export const Media = () => {
   const { mediaId } = useParams();
   const history = useHistory();
+  const [t] = useTranslation('global');
   const dispatch = useDispatch();
   const { currentUser } = useSelector(authSelector);
   const { isGettingMediaView, isEditingMediaView, editMediaViewSuccess } =
@@ -83,24 +85,24 @@ export const Media = () => {
                   type='button'
                   className='button-form'
                   onClick={handleEdit}>
-                  Edit
+                  {t('media.edit')}
                 </button>
                 <button
                   type='button'
                   className='button-form'
                   onClick={handleConfirmDelete}>
-                  Delete
+                  {t('media.delete')}
                 </button>
               </>
             )}
           </section>
           <section className='media-view__info'>
             <div>
-              <h3>Title:</h3>
+              <h3>{t('media.title')}</h3>
               <p>{title}</p>
             </div>
             <div>
-              <h3>Category: </h3>
+              <h3>{t('media.category')}: </h3>
               <p>{type}</p>
             </div>
           </section>
@@ -108,11 +110,11 @@ export const Media = () => {
             <p>Url:</p>
             <input type='text' value={media} readOnly />
             <button type='button' className='button-form' onClick={copyLink}>
-              Copy
+              {t('media.copy')}
             </button>
           </section>
           <Link to={`${ROUTES.USER_WHITHOUT_PARAM}${owner}`}>
-            Upload by {userName}
+            {t('media.upload-by')} {userName}
           </Link>
           <ModalLayout isOpen={isEdit} handleClose={handleEdit}>
             <MediaForm

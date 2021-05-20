@@ -1,0 +1,42 @@
+{
+  "login":{
+    "password": "Contraseña",
+    "submit": "Enviar",
+    "login-with-google" : "Login con Google",
+    "sign-in": "Inicio de sesion",
+    "sign-up": "Registrarse",
+    "forgot-password": "¿Olvidastes la contraseña?"
+  },
+  "home":{
+    "users": "Usuarios"
+  },
+  "media":{
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "title": "Titulo",
+    "category": "Categoria",
+    "copy": "Copiar",
+    "upload-by": "Subido por"
+  },
+  "confirmText":{
+    "are-you-sure-you-want-to-remove": "¿Estas seguro de que quieres eliminar",
+    "yes": "Si",
+    "no": "No"
+  },
+  "mediaForm":{
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "title": "Titulo"
+  },
+  "upload":{
+    "upload-files": "Subida de archivos",
+    "any-url": "Cualquier URL:",
+    "drag-n-drop-some-files-here-or-click-to-select-files": "Suelte el archivo, o pulse para seleccionarlo",
+    "enter-any-media-or-GIF-URL":"Introduzca un enlace de imagen o gif"
+  },
+  "user":{
+    "edit": "Editar",
+    "all-of": "Todo de",
+    "submit": "Enviar"
+  }
+}
