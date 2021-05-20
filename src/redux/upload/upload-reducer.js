@@ -32,6 +32,14 @@ export const UploadReducer = (state = uploadInitialState, action) => {
         uploadSucces: true,
       };
     }
+    case UploadTypes.UPLOAD_RESET: {
+      return {
+        ...state,
+        isUploading: false,
+        uploadError: null,
+        uploadSucces: false,
+      };
+    }
 
     default:
       return state;

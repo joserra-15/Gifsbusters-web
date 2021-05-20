@@ -29,4 +29,8 @@ export const validationSchema = {
       .required('Please enter username'),
     image: Yup.string().required('A radio option is required'),
   }),
+  search: Yup.object({
+    filter: Yup.array().min(1).required('Required'),
+    search: Yup.string().required('Please enter search'),
+  }),
 };

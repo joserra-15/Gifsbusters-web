@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { UploadTypes } from './upload-types';
 import api from '../../api';
 import * as auth from '../../services/auth';
@@ -13,6 +14,9 @@ export const uploadMediaSuccess = () => ({
 export const uploadMediaError = message => ({
   type: UploadTypes.UPLOAD_ERROR,
   payload: message,
+});
+export const uploadReset = () => ({
+  type: UploadTypes.UPLOAD_RESET,
 });
 
 export const uploadMedia = ({ file, type, title }) => {
@@ -36,7 +40,7 @@ export const uploadMedia = ({ file, type, title }) => {
       if (response.error) {
         return dispatch(uploadMediaError(response.error));
       }
-
+      toast.success('Upload correctly');
       return dispatch(uploadMediaSuccess());
     } catch (error) {
       return dispatch(uploadMediaError(error.message));

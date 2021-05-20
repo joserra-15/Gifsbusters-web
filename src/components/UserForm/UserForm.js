@@ -35,7 +35,7 @@ export const UserForm = ({ defaultUserName, defaultImg }) => {
       <form className='user-form' onSubmit={formik.handleSubmit}>
         <div className='flex-space-between'>
           {imagesPreview.map(imagePreview => (
-            <div className='input-group'>
+            <div key={imagePreview} className='input-group'>
               <input
                 type='radio'
                 name='image'

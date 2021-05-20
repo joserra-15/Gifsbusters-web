@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { validationSchema } from '../../utils/validationSchema';
@@ -7,10 +7,12 @@ import Dropzone from '../../components/Dropzone';
 import MediaForm from '../../components/MediaForm';
 
 import './Upload.scss';
-import { uploadMedia } from '../../redux/upload/upload-actions';
+import { uploadMedia, uploadReset } from '../../redux/upload/upload-actions';
+import { uploadSelector } from '../../redux/upload/upload-selectors';
 
 export const Upload = () => {
   const dispatch = useDispatch();
+  const { isUploading, uploadSucces } = useSelector(uploadSelector);
   const [loadFile, setIsLoadFile] = useState(null);
   const formik = useFormik({
     initialValues: { url: '' },
@@ -20,13 +22,27 @@ export const Upload = () => {
     },
   });
 
+  useEffect(() => {
+    dispatch(uploadReset());
+    return () => {
+      setIsLoadFile(null);
+    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (uploadSucces) {
+      setIsLoadFile(null);
+    }
+  }, [uploadSucces]);
+
   const handleUploadFiles = file => {
     setIsLoadFile(file);
   };
 
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     setIsLoadFile(null);
-  };
+  }, []);
+
   const handleSubmit = ({ type, title }) => {
     dispatch(uploadMedia({ file: loadFile, type, title }));
   };
@@ -35,7 +51,12 @@ export const Upload = () => {
     <div className='container'>
       <div className='upload'>
         {loadFile ? (
-          <MediaForm handleCancel={handleCancel} handleSubmit={handleSubmit} />
+          <MediaForm
+            handleCancel={handleCancel}
+            handleSubmit={handleSubmit}
+            loading={isUploading}
+            success={uploadSucces}
+          />
         ) : (
           <>
             <section>

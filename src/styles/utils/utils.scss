@@ -33,6 +33,11 @@ $button-height: $input-height;
   justify-content: space-between;
 }
 
+.flex-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
 .flex-justify-center {
   display: flex;
   justify-content: center;
@@ -72,6 +77,10 @@ $button-height: $input-height;
 
 .mt-60{
   margin-top: 60px;
+}
+
+.mt-70{
+  margin-top: 70px;
 }
 
 .mt-120{

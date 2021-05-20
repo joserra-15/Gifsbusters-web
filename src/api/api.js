@@ -25,6 +25,19 @@ export const api = {
     });
   },
 
+  editMedia: (headers, body = {}) => {
+    return axios.patch(`${baseURL}/media/`, body, {
+      headers: headers,
+    });
+  },
+
+  deleteMedia: (headers, body = {}) => {
+    return axios.delete(`${baseURL}/media/`, {
+      headers: headers,
+      data: body,
+    });
+  },
+
   uploadMedia: (headers, body = {}) => {
     return axios.post(`${baseURL}/media/upload`, body, {
       headers: headers,
@@ -45,5 +58,9 @@ export const api = {
 
   getGifs: () => {
     return axios.get(`${baseURL}/media/gifs`);
+  },
+
+  getSearchMeme: searchValues => {
+    return axios.get(`${baseURL}/search/meme/${searchValues}`);
   },
 };

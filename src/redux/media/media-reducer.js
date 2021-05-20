@@ -12,6 +12,14 @@ export const MediaReducer = (state = MediaInitialState, action) => {
         media: { ...state.media, ...action.payload },
       };
     }
+    case MediaTypes.REMOVE_MEDIA: {
+      const newState = { ...state.media };
+      delete newState[action.payload];
+      return {
+        ...state,
+        media: { ...newState },
+      };
+    }
     default: {
       return state;
     }
