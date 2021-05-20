@@ -13,10 +13,6 @@ import global_en from './translations/en/global.json';
 i18next.init({
   interpolation: { escapeValue: false },
   lng: 'en',
-  /* whitelist: ['es', 'en'],
-  nonExplicitWhitelist: true,
-  load: 'languageOnly',
-  fallbackLng: 'en', */
   resources: {
     es: {
       global: global_es,

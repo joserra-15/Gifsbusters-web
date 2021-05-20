@@ -31,6 +31,7 @@ body{
   max-width: 1040px;
   margin: 0 auto;
   display: grid;
+  overflow-y: auto;
   grid-template-areas:
   "header"
   "container";
