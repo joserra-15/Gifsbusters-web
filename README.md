@@ -33,7 +33,7 @@ _First clone the repositories_
 
 ```
 https://github.com/joserra-15/assembler-tech-challenge-web.git
-https://github.com/joserra-15/assembler-tech-challenge-api
+https://github.com/joserra-15/assembler-tech-challenge-api.git
 ```
 
 _Then run yarn install in each clone_
