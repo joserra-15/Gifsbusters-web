@@ -21,7 +21,7 @@ _Then you have to install yarn_
 npm install --global yarn
 ```
 
-_When you have installed this two programs you nedd to create acounts in:_
+_When you have installed this two programs you need to create acounts in:_
 
 - Firebase
 - MogoDB Atlas
