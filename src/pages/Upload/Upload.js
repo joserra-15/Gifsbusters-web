@@ -77,6 +77,7 @@ export const Upload = () => {
                   className='input-group__input'
                   name='url'
                   id='url'
+                  autoComplete='off'
                   placeholder='Enter any media or GIF URL'
                   aria-label='url'
                   onChange={formik.handleChange}

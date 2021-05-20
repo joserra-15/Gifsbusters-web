@@ -1,3 +1,5 @@
+@import '../../styles/utils/utils.scss';
+
 .search-form{
   position: fixed;
   top: 65px;
@@ -14,5 +16,23 @@
     display: flex;
     color: white;
     justify-content: space-around;
+    align-items: center;
+    margin-top: 5px;
+
+    label{
+      background-color: $primary-color;
+      width: 60px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+    }
+
+    .checkbox-search:checked + .label-search {
+      font-weight: bold;
+      background-color: lighten($primary-color, 30%) ;
+    }
   }
+
 }

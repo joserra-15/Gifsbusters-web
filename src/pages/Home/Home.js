@@ -16,7 +16,7 @@ export const Home = () => {
   return (
     <div className='container'>
       <SearchForm />
-      <main className='mt-70'>
+      <main className='mt-100'>
         <MediaList loading={isGettingMedia} media={media} />
       </main>
     </div>

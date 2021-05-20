@@ -6,6 +6,16 @@ const searchInitialState = {
   getMemesSuccess: false,
   memes: [],
 
+  isGettingGifs: false,
+  getGifsError: null,
+  getGifsSuccess: false,
+  gifs: [],
+
+  isGettingUsers: false,
+  getUsersError: null,
+  getUsersSuccess: false,
+  users: [],
+
   filterMeme: false,
   filterGif: false,
   filterUser: false,
@@ -36,6 +46,56 @@ export const SearchReducer = (state = searchInitialState, action) => {
         getMemesError: null,
         getMemesSuccess: true,
         memes: [...action.payload],
+      };
+    }
+    case SearchTypes.GET_SEARCH_GIF_REQUEST: {
+      return {
+        ...state,
+        isGettingGifs: true,
+        getGifsError: null,
+        getGifsSuccess: false,
+      };
+    }
+    case SearchTypes.GET_SEARCH_GIF_ERROR: {
+      return {
+        ...state,
+        isGettingGifs: false,
+        getGifsError: action.payload,
+        getGifsSuccess: false,
+      };
+    }
+    case SearchTypes.GET_SEARCH_GIF_SUCCESS: {
+      return {
+        ...state,
+        isGettingGifs: false,
+        getGifsError: null,
+        getGifsSuccess: true,
+        gifs: [...action.payload],
+      };
+    }
+    case SearchTypes.GET_SEARCH_USER_REQUEST: {
+      return {
+        ...state,
+        isGettingUsers: true,
+        getUsersError: null,
+        getUsersSuccess: false,
+      };
+    }
+    case SearchTypes.GET_SEARCH_USER_ERROR: {
+      return {
+        ...state,
+        isGettingUsers: false,
+        getUsersError: action.payload,
+        getUsersSuccess: false,
+      };
+    }
+    case SearchTypes.GET_SEARCH_USER_SUCCESS: {
+      return {
+        ...state,
+        isGettingUsers: false,
+        getUsersError: null,
+        getUsersSuccess: true,
+        users: [...action.payload],
       };
     }
     case SearchTypes.SEARCH_FILTER_MEME_CHANGE: {

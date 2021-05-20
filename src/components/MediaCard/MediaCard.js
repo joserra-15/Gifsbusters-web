@@ -2,12 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { selectMediaByIdState } from '../../redux/media/media-selectors';
 import { useSelector } from 'react-redux';
-
-import './MediaCard.scss';
 import { Link } from 'react-router-dom';
 import ROUTES from '../../routes';
 
-export const MediaCard = ({ mediaId}) => {
+export const MediaCard = ({ mediaId }) => {
   const { title, media } = useSelector(selectMediaByIdState(mediaId)) || {};
   return (
     <div>

@@ -1,0 +1,22 @@
+.user-card{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &-container{
+    position: relative;
+
+    &__info{
+      position: absolute;
+      bottom: 0;
+      color: white;
+      left: 5px;
+    }
+
+    &__img{
+      width: 160px;
+      height: 160px;
+    }
+  }
+
+}

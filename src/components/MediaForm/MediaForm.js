@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import { validationSchema } from '../../utils/validationSchema';
-import { useDispatch } from 'react-redux';
 import { Spinner } from '../Spinner/Spinner';
 
 import './MediaForm.scss';
@@ -14,7 +13,6 @@ export const MediaForm = ({
   handleSubmit,
   loading,
 }) => {
-  const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: { title: defaultTitle, type: defaultType },
     validationSchema: validationSchema.mediaForm,

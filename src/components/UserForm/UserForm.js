@@ -42,7 +42,7 @@ export const UserForm = ({ defaultUserName, defaultImg }) => {
                 id={imagePreview}
                 onChange={handleChange}
                 value={imagePreview}
-                className='user-form__radio'
+                className='none'
               />
               <label htmlFor={imagePreview}>
                 <img

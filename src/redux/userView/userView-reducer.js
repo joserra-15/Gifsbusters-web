@@ -9,7 +9,10 @@ const userViewInitialState = {
   ediUserViewError: null,
   ediUserViewSuccess: false,
 
-  user: '',
+  isGettingUserMediaView: false,
+  getUserMediaViewError: null,
+  getUserMediaViewSuccess: false,
+  media: [],
 };
 
 export const UserViewReducer = (state = userViewInitialState, action) => {
@@ -36,7 +39,6 @@ export const UserViewReducer = (state = userViewInitialState, action) => {
         isGettingUserView: false,
         getUserViewError: null,
         getUserViewSuccess: true,
-        user: action.payload,
       };
     }
     case UserViewTypes.EDIT_USER_VIEW_REQUEST: {
@@ -61,6 +63,31 @@ export const UserViewReducer = (state = userViewInitialState, action) => {
         isEditingUserView: false,
         ediUserViewError: null,
         ediUserViewSuccess: true,
+      };
+    }
+    case UserViewTypes.GET_USER_MEDIA_VIEW_REQUEST: {
+      return {
+        ...state,
+        isGettingUserMediaView: true,
+        getUserMediaViewError: null,
+        getUserMediaViewSuccess: false,
+      };
+    }
+    case UserViewTypes.GET_USER_MEDIA_VIEW_ERROR: {
+      return {
+        ...state,
+        isGettingUserMediaView: false,
+        getUserMediaViewError: action.payload,
+        getUserMediaViewSuccess: false,
+      };
+    }
+    case UserViewTypes.GET_USER_MEDIA_VIEW_SUCCESS: {
+      return {
+        ...state,
+        isGettingUserMediaView: false,
+        getUserMediaViewError: null,
+        getUserMediaViewSuccess: true,
+        media: [...action.payload],
       };
     }
 

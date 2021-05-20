@@ -48,6 +48,10 @@ export const api = {
     return axios.get(`${baseURL}/media/${mediaId}`);
   },
 
+  getMediaByUserId: userId => {
+    return axios.get(`${baseURL}/media/user/${userId}`);
+  },
+
   getMedia: () => {
     return axios.get(`${baseURL}/media`);
   },
@@ -60,7 +64,15 @@ export const api = {
     return axios.get(`${baseURL}/media/gifs`);
   },
 
-  getSearchMeme: searchValues => {
-    return axios.get(`${baseURL}/search/meme/${searchValues}`);
+  getSearchMeme: searchValue => {
+    return axios.get(`${baseURL}/search/meme/${searchValue}`);
+  },
+
+  getSearchGif: searchValue => {
+    return axios.get(`${baseURL}/search/gif/${searchValue}`);
+  },
+
+  getSearchUser: searchValue => {
+    return axios.get(`${baseURL}/search/user/${searchValue}`);
   },
 };

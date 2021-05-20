@@ -4,7 +4,6 @@ import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 
-import './SearchForm.scss';
 import { useDispatch } from 'react-redux';
 import { SearchTypes } from '../../redux/search/search-types';
 import {
@@ -14,6 +13,8 @@ import {
 } from '../../redux/search/search-actions';
 import { validationSchema } from '../../utils/validationSchema';
 
+import './SearchForm.scss';
+
 export const SearchForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -21,9 +22,25 @@ export const SearchForm = () => {
     initialValues: { search: '', filter: [] },
     validationSchema: validationSchema.search,
     onSubmit: values => {
+      dispatch(
+        filterChangeGif(
+          values.filter.includes(SearchTypes.SEARCH_FILTER_GIF_CHANGE),
+        ),
+      );
+      dispatch(
+        filterChangeMeme(
+          values.filter.includes(SearchTypes.SEARCH_FILTER_MEME_CHANGE),
+        ),
+      );
+      dispatch(
+        filterChangeUser(
+          values.filter.includes(SearchTypes.SEARCH_FILTER_USER_CHANGE),
+        ),
+      );
       history.push(`${ROUTES.SEARCH_WHITHOUT_PARAM}${values.search}`);
     },
   });
+
   return (
     <form className='w-full search-form px-10' onSubmit={formik.handleSubmit}>
       <div className='search-form__bar'>
@@ -32,6 +49,7 @@ export const SearchForm = () => {
           name='search'
           className='w-full'
           id='search'
+          autoComplete='off'
           placeholder='Search...'
           aria-label='search'
           onChange={e => {
@@ -49,46 +67,46 @@ export const SearchForm = () => {
         <div className='flex'>
           <input
             type='checkbox'
-            className=''
+            className='checkbox-search none'
             name='filter'
             id='filterMeme'
-            onChange={e => {
-              dispatch(filterChangeMeme(e.target.checked));
-              formik.handleChange(e);
-            }}
+            onChange={formik.handleChange}
             value={SearchTypes.SEARCH_FILTER_MEME_CHANGE}
           />
-          <label htmlFor='filterMeme'>Memes</label>
+          <label htmlFor='filterMeme' className='label-search'>
+            Memes
+          </label>
         </div>
         <div className='flex'>
           <input
             type='checkbox'
-            className=''
+            className='checkbox-search none'
             name='filter'
             id='filterGif'
-            onChange={e => {
-              dispatch(filterChangeGif(e.target.checked));
-              formik.handleChange(e);
-            }}
+            onChange={formik.handleChange}
             value={SearchTypes.SEARCH_FILTER_GIF_CHANGE}
           />
-          <label htmlFor='filterGif'>Gifs</label>
+          <label htmlFor='filterGif' className='label-search'>
+            Gifs
+          </label>
         </div>
         <div className='flex'>
           <input
             type='checkbox'
-            className=''
+            className='checkbox-search none'
             name='filter'
             id='filterUser'
-            onChange={e => {
-              dispatch(filterChangeUser(e.target.checked));
-              formik.handleChange(e);
-            }}
+            onChange={formik.handleChange}
             value={SearchTypes.SEARCH_FILTER_USER_CHANGE}
           />
-          <label htmlFor='filterUser'>Users</label>
+          <label htmlFor='filterUser' className='label-search'>
+            Users
+          </label>
         </div>
       </div>
+      {formik.errors.filter && (
+        <div className=' text-white'>{formik.errors.filter}</div>
+      )}
     </form>
   );
 };

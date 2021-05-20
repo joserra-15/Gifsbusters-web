@@ -2,9 +2,10 @@ import { toast } from 'react-toastify';
 import { UserViewTypes } from './userView-types';
 import * as auth from '../../services/auth';
 import api from '../../api';
-import { normalizeUsers } from '../../utils/normlizr';
+import { normalizeMedia, normalizeUsers } from '../../utils/normlizr';
 import { loadUsers } from '../user/user-actions';
 import { signOutSuccess } from '../auth/auth-actions';
+import { loadMedia } from '../media/media-actions';
 
 export const getUserByIdRequest = () => ({
   type: UserViewTypes.GET_USER_VIEW_REQUEST,
@@ -72,6 +73,37 @@ export const editUser = (userName, image) => {
       return dispatch(editUserSuccess());
     } catch (error) {
       return dispatch(editUserError(error.message));
+    }
+  };
+};
+
+export const getMediaByUserIdRequest = () => ({
+  type: UserViewTypes.GET_USER_MEDIA_VIEW_REQUEST,
+});
+export const getMediaByUserIdSuccess = media => ({
+  type: UserViewTypes.GET_USER_MEDIA_VIEW_SUCCESS,
+  payload: media,
+});
+export const getMediaByUserIdError = message => ({
+  type: UserViewTypes.GET_USER_MEDIA_VIEW_ERROR,
+  payload: message,
+});
+
+export const getMediaByUserId = userId => {
+  return async function getMediaByUserIdThunk(dispatch) {
+    dispatch(getMediaByUserIdRequest());
+    try {
+      const { data: response } = await api.getMediaByUserId(userId);
+      if (response.error) {
+        return dispatch(getMediaByUserIdError(response.error));
+      }
+      const { result, entities } = normalizeMedia(response.data);
+
+      dispatch(loadMedia(entities.media));
+
+      return dispatch(getMediaByUserIdSuccess(result));
+    } catch (error) {
+      return dispatch(getMediaByUserIdError(error.message));
     }
   };
 };

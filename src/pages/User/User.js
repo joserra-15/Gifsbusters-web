@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import MediaList from '../../components/MediaList';
 import { ModalLayout } from '../../components/ModalLayout/ModalLayout';
 import Spinner from '../../components/Spinner';
 import { UserForm } from '../../components/UserForm/UserForm';
 import { authSelector } from '../../redux/auth/auth-selector';
 import { selectUserByIdState } from '../../redux/user/user-selectors';
-import { getUserById } from '../../redux/userView/userView-actions';
+import {
+  getMediaByUserId,
+  getUserById,
+} from '../../redux/userView/userView-actions';
 import { userViewSelector } from '../../redux/userView/userView-selectors';
 
 import './User.scss';
@@ -14,7 +18,8 @@ import './User.scss';
 export const User = () => {
   const { userId } = useParams();
   const { currentUser } = useSelector(authSelector);
-  const { isGettingUserView } = useSelector(userViewSelector) || {};
+  const { isGettingUserView, isGettingUserMediaView, media } =
+    useSelector(userViewSelector) || {};
   const { userName, image } = useSelector(selectUserByIdState(userId)) || {};
 
   const [isEdit, setIsEdit] = useState(false);
@@ -22,6 +27,7 @@ export const User = () => {
 
   useEffect(() => {
     dispatch(getUserById(userId));
+    dispatch(getMediaByUserId(userId));
   }, [dispatch, userId]);
 
   const handleEdit = () => {
@@ -38,7 +44,7 @@ export const User = () => {
             <img src={image} alt='profile-img' className='img' />
           </div>
           <div>
-            <h3>Username: {userName}</h3>
+            <h3>Username: {userName || 'Unknown'}</h3>
           </div>
           {currentUser === userId && (
             <button type='button' className='button-form' onClick={handleEdit}>
@@ -50,6 +56,10 @@ export const User = () => {
           </ModalLayout>
         </div>
       )}
+      <section>
+        <h3 className='text-white px-10'>All of {userName}</h3>
+        <MediaList loading={isGettingUserMediaView} media={media} />
+      </section>
     </div>
   );
 };
