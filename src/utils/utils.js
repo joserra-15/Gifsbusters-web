@@ -1,5 +1,5 @@
 export const imagesPreview = [
-  'https://media.giphy.com/media/QZy4VrLD54SaVVA2Ge/giphy.gif',
-  'https://media.giphy.com/media/W2j0sdCmHRaqLntCRD/giphy.gif',
-  'https://media.giphy.com/media/2vmgb8ZGaeBsuSeo5I/giphy.gif',
+  'https://res.cloudinary.com/dwlujoptw/image/upload/v1621507052/giphy_bylbpc.gif',
+  'https://res.cloudinary.com/dwlujoptw/image/upload/v1621507077/giphy_axvhld.gif',
+  'https://res.cloudinary.com/dwlujoptw/image/upload/v1621507104/giphy_nipmvh.gif',
 ];

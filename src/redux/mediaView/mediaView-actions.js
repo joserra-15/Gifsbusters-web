@@ -116,6 +116,7 @@ export const deleteMedia = mediaId => {
       if (response.error) {
         return dispatch(deleteMediaError(response.error));
       }
+
       dispatch(removeMedia(mediaId));
       toast.success('delete correctly!');
       return dispatch(deleteMediaSuccess());

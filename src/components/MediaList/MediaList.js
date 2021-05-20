@@ -12,7 +12,9 @@ export const MediaList = ({ loading, media, mediaEmptyMessage }) => {
         <Spinner />
       ) : (
         <>
-          {media.length === 0 && <p>{mediaEmptyMessage}</p>}
+          {media.length === 0 && (
+            <p className='text-white'>{mediaEmptyMessage}</p>
+          )}
           {media.map(mediaId => (
             <MediaCard key={mediaId} mediaId={mediaId} />
           ))}
