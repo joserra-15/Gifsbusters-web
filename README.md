@@ -21,7 +21,7 @@ _Then you have to install yarn_
 npm install --global yarn
 ```
 
-_When yoy have installed this two programs you nedd to create acounts in:_
+_When you have installed this two programs you nedd to create acounts in:_
 
 - Firebase
 - MogoDB Atlas
@@ -42,8 +42,8 @@ _Then run yarn install in each clone_
 yarn install
 ```
 
-_When you have all the denpedencies intalled you need to create two .env files,
-one in web folder, and the other in api folder_
+_When you have all the dependencies installed you need to create two .env files,
+one in web repository, and the other in api repository_
 
 _The web .env file need to contain the next variables:_
 
