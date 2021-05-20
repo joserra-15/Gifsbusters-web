@@ -96,7 +96,7 @@ your contribution, and push the branch as a pull requests.
 
 ## Wiki 📖
 
-- You can also check more info in [Documentation](./documentation/Documentation.pdf) on PDF.
+- You can also check more info in [Documentation](./Documentation/Documentation.pdf) on PDF.
 
 
 ## Contributors ✨
